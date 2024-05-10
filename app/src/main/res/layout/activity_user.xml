@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".UserActivity">
+
+    <LinearLayout
+        android:layout_width="412dp"
+        android:layout_height="63dp"
+        android:orientation="horizontal"
+        android:background="@color/vert_pastel"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints"
+        >
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textSize="35dp"
+            android:gravity="center"
+            android:text="User profile" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="519dp"
+        android:layout_marginTop="92dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <Button
+            android:id="@+id/mapsbutton"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="Maps"
+            tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/camerabutton"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="Camera"
+            tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/logoutbutton"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="Déconnexion"
+            tools:ignore="MissingConstraints" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
