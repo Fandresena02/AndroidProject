@@ -35,37 +35,46 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <SurfaceView
-            android:id="@+id/surfaceView"
-            android:layout_width="match_parent"
-            android:layout_height="283dp" />
 
         <Button
-            android:id="@+id/prendrephoto"
-            android:layout_width="match_parent"
+            android:id="@+id/photoButton"
+            android:layout_width="330dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Photo" />
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:layout_marginTop="50dp"
+            android:backgroundTint="@color/green"
+            android:text="Prendre une photo"
+            app:cornerRadius="10dp" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@color/vert_pastel"
+            android:textSize="20dp"
             android:layout_marginBottom="10dp"
-            android:text="La photo prise"/>
+            android:layout_marginTop="50dp"
+            android:text="La photo :"/>
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/camera"
             android:layout_width="match_parent"
-            android:layout_height="242dp"
-            android:src="@android:drawable/ic_menu_gallery" />
+            android:layout_height="283dp"
+            android:layout_marginBottom="10dp"/>
+
+        <Button
+            android:id="@+id/telechargerButton"
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:backgroundTint="@color/green"
+            android:layout_marginBottom="10dp"
+            android:text="Télécharger" />
 
         <Button
             android:id="@+id/retour"
-            android:layout_width="match_parent"
+            android:layout_width="330dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal"
             android:text="Retour User Profile" />
 
     </LinearLayout>

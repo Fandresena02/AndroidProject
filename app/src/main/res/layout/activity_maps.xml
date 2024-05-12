@@ -1,16 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:map="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/map"
-    android:name="com.google.android.gms.maps.SupportMapFragment"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MapsActivity" />
-
-<!--
-
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -74,13 +62,13 @@
             android:text="Descriptif" />
 
         <Button
-            android:id="@+id/button"
-            android:layout_width="match_parent"
+            android:id="@+id/retour"
+            android:layout_width="330dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Retour User Profil" />
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:text="Retour User Profile" />
 
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
--->
+

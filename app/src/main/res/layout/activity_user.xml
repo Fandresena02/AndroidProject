@@ -43,23 +43,29 @@
 
         <Button
             android:id="@+id/mapsbutton"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal"
             android:text="Maps"
+            android:backgroundTint="@color/green"
             tools:ignore="MissingConstraints" />
 
         <Button
             android:id="@+id/camerabutton"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal"
             android:text="Camera"
+            android:backgroundTint="@color/green"
             tools:ignore="MissingConstraints" />
 
         <Button
             android:id="@+id/logoutbutton"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal"
             android:text="Déconnexion"
+            android:backgroundTint="@color/indigo"
             tools:ignore="MissingConstraints" />
     </LinearLayout>
 

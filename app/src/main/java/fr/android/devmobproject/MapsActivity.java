@@ -4,10 +4,15 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -16,10 +21,13 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.List;
+import java.util.Locale;
+
 import fr.android.devmobproject.databinding.ActivityMapsBinding;
 
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, LocationListener {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, LocationListener{
 
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
@@ -34,14 +42,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
+                .findFragmentById(R.id.mapView);
         mapFragment.getMapAsync(this);
 
         // 1- Request access to the location service
         lm = (LocationManager) getSystemService(LOCATION_SERVICE);
 
-
+        // On définit le bouton de déconnexion
+        Button logoutButton = findViewById(R.id.retour);
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // On appelle LoginActivity, pour retourner sur la page de connexion
+                Intent intent = new Intent(MapsActivity.this, UserActivity.class);
+                startActivity(intent);
+            }
+        });
     }
+
+
 
     @SuppressLint("MissingPermission")
     @Override
@@ -88,4 +107,5 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.moveCamera(CameraUpdateFactory.newLatLng(newPos));
 
     }
+
 }
