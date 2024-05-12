@@ -21,6 +21,11 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import android.location.Geocoder;
+import android.location.Address;
+import android.widget.TextView;
+
+import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
@@ -32,7 +37,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
     private LocationManager lm;
-    private Marker marker;
+    private Marker previousMarker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,23 +83,34 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // 4- unregister from the service when the activity becomes invisible
         lm.removeUpdates(this);
     }
-
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
-                if (marker == null) {
-                    marker = mMap.addMarker(new MarkerOptions().position(latLng));
-                } else {
-                    marker.setPosition(latLng);
+                if (previousMarker != null) {
+                    previousMarker.remove();
                 }
+                previousMarker = mMap.addMarker(new MarkerOptions().position(latLng));
+                updateLocation(latLng);
             }
         });
     }
 
+    private void updateLocation(LatLng latLng) {
+        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+        try {
+            List<Address> addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1);
+            if (!addresses.isEmpty()) {
+                String addressString = addresses.get(0).getAddressLine(0);
+                TextView recetteTextView = findViewById(R.id.location);
+                recetteTextView.setText(addressString);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public void onLocationChanged(@NonNull Location location) {
@@ -102,11 +118,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         double lat = location.getLatitude();
         double lng = location.getLongitude();
 
-        // Add a marker and move the camera
         LatLng newPos = new LatLng(lat, lng);
-        mMap.addMarker(new MarkerOptions().position(newPos));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(newPos));
-
     }
 
 }

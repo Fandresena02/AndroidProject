@@ -45,15 +45,22 @@
             android:layout_height="339dp"
             tools:context=".MapsActivity" />
 
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="match_parent"
+            android:layout_height="83dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/green"
+            android:text="" />
 
         <TextView
             android:id="@+id/recette"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="30dp"
             android:background="@color/green"
             android:textColor="@color/white"
-            android:text="Recette de la région/pays" />
+            android:text="Recette de la région/pays : " />
 
         <TextView
             android:id="@+id/descriptif"
