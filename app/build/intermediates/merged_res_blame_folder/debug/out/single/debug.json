@@ -1,0 +1,94 @@
+[
+    {
+        "merged": "/Users/christine/.gradle/daemon/8.2/fr.android.devmobproject.app-merged_res-36:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "/Users/christine/.gradle/daemon/8.2/fr.android.devmobproject.app-main-38:/mipmap-mdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/Users/christine/.gradle/daemon/8.2/fr.android.devmobproject.app-merged_res-36:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "/Users/christine/.gradle/daemon/8.2/fr.android.devmobproject.app-main-38:/mipmap-xxxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/Users/christine/.gradle/daemon/8.2/fr.android.devmobproject.app-merged_res-36:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/christine/.gradle/daemon/8.2/fr.android.devmobproject.app-main-38:/mipmap-xxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/Users/christine/.gradle/daemon/8.2/fr.android.devmobproject.app-merged_res-36:/layout_activity_login.xml.flat",
+        "source": "/Users/christine/.gradle/daemon/8.2/fr.android.devmobproject.app-main-38:/layout/activity_login.xml"
+    },
+    {
+        "merged": "/Users/christine/.gradle/daemon/8.2/fr.android.devmobproject.app-merged_res-36:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "/Users/christine/.gradle/daemon/8.2/fr.android.devmobproject.app-main-38:/mipmap-xhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/Users/christine/.gradle/daemon/8.2/fr.android.devmobproject.app-merged_res-36:/drawable_mapbg.jpg.flat",
+        "source": "/Users/christine/.gradle/daemon/8.2/fr.android.devmobproject.app-main-38:/drawable/mapbg.jpg"
+    },
+    {
+        "merged": "/Users/christine/.gradle/daemon/8.2/fr.android.devmobproject.app-merged_res-36:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "/Users/christine/.gradle/daemon/8.2/fr.android.devmobproject.app-main-38:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "/Users/christine/.gradle/daemon/8.2/fr.android.devmobproject.app-merged_res-36:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "/Users/christine/.gradle/daemon/8.2/fr.android.devmobproject.app-main-38:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "/Users/christine/.gradle/daemon/8.2/fr.android.devmobproject.app-merged_res-36:/xml_data_extraction_rules.xml.flat",
+        "source": "/Users/christine/.gradle/daemon/8.2/fr.android.devmobproject.app-main-38:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "/Users/christine/.gradle/daemon/8.2/fr.android.devmobproject.app-merged_res-36:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "/Users/christine/.gradle/daemon/8.2/fr.android.devmobproject.app-main-38:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "/Users/christine/.gradle/daemon/8.2/fr.android.devmobproject.app-merged_res-36:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/christine/.gradle/daemon/8.2/fr.android.devmobproject.app-main-38:/mipmap-xxxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/Users/christine/.gradle/daemon/8.2/fr.android.devmobproject.app-merged_res-36:/layout_activity_maps.xml.flat",
+        "source": "/Users/christine/.gradle/daemon/8.2/fr.android.devmobproject.app-main-38:/layout/activity_maps.xml"
+    },
+    {
+        "merged": "/Users/christine/.gradle/daemon/8.2/fr.android.devmobproject.app-merged_res-36:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "/Users/christine/.gradle/daemon/8.2/fr.android.devmobproject.app-main-38:/mipmap-xxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/Users/christine/.gradle/daemon/8.2/fr.android.devmobproject.app-merged_res-36:/drawable_background.jpg.flat",
+        "source": "/Users/christine/.gradle/daemon/8.2/fr.android.devmobproject.app-main-38:/drawable/background.jpg"
+    },
+    {
+        "merged": "/Users/christine/.gradle/daemon/8.2/fr.android.devmobproject.app-merged_res-36:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "/Users/christine/.gradle/daemon/8.2/fr.android.devmobproject.app-main-38:/mipmap-hdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "fr.android.devmobproject.app-merged_res-36:/layout_activity_maps.xml.flat",
+        "source": "fr.android.devmobproject.app-main-38:/layout/activity_maps.xml"
+    },
+    {
+        "merged": "/Users/christine/.gradle/daemon/8.2/fr.android.devmobproject.app-merged_res-36:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/christine/.gradle/daemon/8.2/fr.android.devmobproject.app-main-38:/mipmap-mdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/Users/christine/.gradle/daemon/8.2/fr.android.devmobproject.app-merged_res-36:/layout_activity_camera.xml.flat",
+        "source": "/Users/christine/.gradle/daemon/8.2/fr.android.devmobproject.app-main-38:/layout/activity_camera.xml"
+    },
+    {
+        "merged": "/Users/christine/.gradle/daemon/8.2/fr.android.devmobproject.app-merged_res-36:/drawable_ic_launcher_background.xml.flat",
+        "source": "/Users/christine/.gradle/daemon/8.2/fr.android.devmobproject.app-main-38:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "/Users/christine/.gradle/daemon/8.2/fr.android.devmobproject.app-merged_res-36:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/christine/.gradle/daemon/8.2/fr.android.devmobproject.app-main-38:/mipmap-xhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/Users/christine/.gradle/daemon/8.2/fr.android.devmobproject.app-merged_res-36:/xml_backup_rules.xml.flat",
+        "source": "/Users/christine/.gradle/daemon/8.2/fr.android.devmobproject.app-main-38:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "/Users/christine/.gradle/daemon/8.2/fr.android.devmobproject.app-merged_res-36:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/christine/.gradle/daemon/8.2/fr.android.devmobproject.app-main-38:/mipmap-hdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/Users/christine/.gradle/daemon/8.2/fr.android.devmobproject.app-merged_res-36:/layout_activity_user.xml.flat",
+        "source": "/Users/christine/.gradle/daemon/8.2/fr.android.devmobproject.app-main-38:/layout/activity_user.xml"
+    }
+]

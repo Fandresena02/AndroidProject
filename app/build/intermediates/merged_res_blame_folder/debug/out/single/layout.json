@@ -1,0 +1,22 @@
+[
+    {
+        "merged": "/Users/christine/.gradle/daemon/8.2/fr.android.devmobproject.app-mergeDebugResources-35:/layout/activity_user.xml",
+        "source": "/Users/christine/.gradle/daemon/8.2/fr.android.devmobproject.app-main-38:/layout/activity_user.xml"
+    },
+    {
+        "merged": "/Users/christine/.gradle/daemon/8.2/fr.android.devmobproject.app-mergeDebugResources-35:/layout/activity_login.xml",
+        "source": "/Users/christine/.gradle/daemon/8.2/fr.android.devmobproject.app-main-38:/layout/activity_login.xml"
+    },
+    {
+        "merged": "fr.android.devmobproject.app-mergeDebugResources-35:/layout/activity_maps.xml",
+        "source": "fr.android.devmobproject.app-main-38:/layout/activity_maps.xml"
+    },
+    {
+        "merged": "/Users/christine/.gradle/daemon/8.2/fr.android.devmobproject.app-mergeDebugResources-35:/layout/activity_maps.xml",
+        "source": "/Users/christine/.gradle/daemon/8.2/fr.android.devmobproject.app-main-38:/layout/activity_maps.xml"
+    },
+    {
+        "merged": "/Users/christine/.gradle/daemon/8.2/fr.android.devmobproject.app-mergeDebugResources-35:/layout/activity_camera.xml",
+        "source": "/Users/christine/.gradle/daemon/8.2/fr.android.devmobproject.app-main-38:/layout/activity_camera.xml"
+    }
+]
