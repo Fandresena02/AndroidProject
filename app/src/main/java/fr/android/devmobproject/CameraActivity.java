@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -57,7 +58,7 @@ public class CameraActivity extends Activity {
         downloadButton.setOnClickListener(v -> {
             Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
             if (bitmap != null && ContextCompat.checkSelfPermission(this, WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-                saveImage(bitmap);
+                saveImageToGallery(this, bitmap); // Utilisation de la méthode saveImageToGallery
             } else {
                 ActivityCompat.requestPermissions(this, new String[]{WRITE_EXTERNAL_STORAGE}, REQUEST_CODE);
             }
@@ -74,43 +75,36 @@ public class CameraActivity extends Activity {
             }
         });
     }
-
-
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
             Bitmap photo = (Bitmap) data.getExtras().get("data");
             imageView.setImageBitmap(photo);
+
+            // Enregistrer l'image dans la galerie
+            saveImageToGallery(this, photo);
         }
     }
 
-    private void saveImage(Bitmap image) {
-        ContentValues values = new ContentValues();
-        values.put(MediaStore.Images.Media.TITLE, "New Picture");
-        values.put(MediaStore.Images.Media.DESCRIPTION, "From your Camera");
-        values.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg");
-        Uri uri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+    public static void saveImageToGallery(Context context, Bitmap image) {
+        // Récupérer le chemin de sauvegarde
+        String savedImagePath = MediaStore.Images.Media.insertImage(
+                context.getContentResolver(),
+                image,
+                "title",
+                "description"
+        );
 
-        try {
-            OutputStream outstream = getContentResolver().openOutputStream(Objects.requireNonNull(uri));
-            image.compress(Bitmap.CompressFormat.JPEG, 100, outstream);
-            outstream.close();
-            Toast.makeText(getApplicationContext(), "Image Saved Successfully", Toast.LENGTH_SHORT).show();
-        } catch (Exception e) {
-            Toast.makeText(getApplicationContext(), "Image Save Failed", Toast.LENGTH_SHORT).show();
+        // Scanner le fichier pour l'ajouter à la galerie
+        if (savedImagePath != null) {
+            Uri savedImageURI = Uri.parse(savedImagePath);
+            Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+            mediaScanIntent.setData(savedImageURI);
+            context.sendBroadcast(mediaScanIntent);
+        } else {
+            Toast.makeText(context, "Impossible de sauvegarder l'image", Toast.LENGTH_SHORT).show();
         }
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == REQUEST_CODE) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
 
 }
 

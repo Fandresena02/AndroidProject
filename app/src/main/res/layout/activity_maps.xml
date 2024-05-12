@@ -51,7 +51,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@color/vert_pastel"
+            android:background="@color/green"
+            android:textColor="@color/white"
             android:text="Recette de la région/pays" />
 
         <TextView
@@ -59,7 +60,17 @@
             android:layout_width="match_parent"
             android:layout_height="83dp"
             android:layout_marginTop="10dp"
-            android:text="Descriptif" />
+            android:textColor="@color/green"
+            android:text="Descriptif :" />
+
+        <Button
+            android:id="@+id/ajouterPoint"
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/green"
+            android:text="Ajouter un point" />
 
         <Button
             android:id="@+id/retour"
