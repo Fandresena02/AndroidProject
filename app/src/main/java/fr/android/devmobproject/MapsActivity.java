@@ -1,11 +1,16 @@
 package fr.android.devmobproject;
 
 
+import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
+import static android.Manifest.permission.ACCESS_FINE_LOCATION;
+
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -13,6 +18,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -20,6 +27,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 
 import android.location.Geocoder;
 import android.location.Address;
@@ -38,6 +47,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private ActivityMapsBinding binding;
     private LocationManager lm;
     private Marker previousMarker;
+    private final int FINE_PERMISSION_CODE = 1;
+    Location currentLocation;
+    FusedLocationProviderClient fusedLocationProviderClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,13 +58,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         binding = ActivityMapsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+        getLastLocation();
+
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.mapView);
         mapFragment.getMapAsync(this);
 
         // 1- Request access to the location service
         lm = (LocationManager) getSystemService(LOCATION_SERVICE);
+
 
         // On définit le bouton de déconnexion
         Button logoutButton = findViewById(R.id.retour);
@@ -66,6 +81,27 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
 
     }
+
+    private void getLastLocation(){
+        if(ActivityCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this, new String[]{ACCESS_FINE_LOCATION}, FINE_PERMISSION_CODE);
+            return;
+        }
+        Task<Location> task = fusedLocationProviderClient.getLastLocation();
+        task.addOnSuccessListener(new OnSuccessListener<Location>() {
+            @Override
+            public void onSuccess(Location location) {
+                if (location != null){
+                    currentLocation = location;
+                    SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                            .findFragmentById(R.id.mapView);
+                    mapFragment.getMapAsync(MapsActivity.this);
+                }
+            }
+        });
+    }
+
+
 
     @SuppressLint("MissingPermission")
     @Override
@@ -98,6 +134,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
     }
 
+    /*
     private void updateLocation(LatLng latLng) {
         Geocoder geocoder = new Geocoder(this, Locale.getDefault());
         try {
@@ -111,15 +148,61 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             e.printStackTrace();
         }
     }
+    */
+
+    private void updateLocation(LatLng latLng) {
+        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+        try {
+            List<Address> addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1);
+            if (!addresses.isEmpty()) {
+                String addressString = addresses.get(0).getAddressLine(0);
+                // La position du marqueur
+                String latLngText = String.format(Locale.US, "La %f, Lo %f", latLng.latitude, latLng.longitude);
+                TextView recetteTextView = findViewById(R.id.descriptif);
+                TextView locationTextView = findViewById(R.id.localisationAdresse);
+                locationTextView.setText(latLngText + " | " + addressString);
+
+                // la recette en fonction de la ville
+                String cityName = addresses.get(0).getLocality();
+                MySQLDatabase mySQLDatabase = new MySQLDatabase();
+                String recette = mySQLDatabase.getRecette(cityName);
+                recetteTextView.setText(recette);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void updateCurrentLocation(double latitude, double longitude) {
+        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+        try {
+            List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
+            if (!addresses.isEmpty()) {
+                String addressString = addresses.get(0).getAddressLine(0);
+                String latLngText = String.format(Locale.US, "La %f, Lo %f", latitude, longitude);
+                TextView positionAdresseTextView = findViewById(R.id.positionAdresse);
+                positionAdresseTextView.setText(latLngText + " | " + addressString);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public void onLocationChanged(@NonNull Location location) {
-        // 3- received a new location from the GPS
         double lat = location.getLatitude();
         double lng = location.getLongitude();
-
         LatLng newPos = new LatLng(lat, lng);
         mMap.moveCamera(CameraUpdateFactory.newLatLng(newPos));
+        if (previousMarker != null) {
+            previousMarker.remove();
+        }
+        previousMarker = mMap.addMarker(new MarkerOptions().position(newPos));
+        updateLocation(newPos);
+
+        updateCurrentLocation(lat, lng);
     }
+
+
 
 }

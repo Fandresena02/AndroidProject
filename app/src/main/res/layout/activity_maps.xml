@@ -45,39 +45,72 @@
             android:layout_height="339dp"
             tools:context=".MapsActivity" />
 
-        <TextView
-            android:id="@+id/location"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="83dp"
-            android:layout_marginTop="10dp"
-            android:textColor="@color/green"
-            android:text="" />
+            android:layout_height="65dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/localisation"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="  Localisation : "
+                android:textColor="@color/green" />
+
+            <TextView
+                android:id="@+id/localisationAdresse"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="  Adresse "
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:singleLine="false"
+                android:textColor="@color/green" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/position"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="  Position actuelle :  "
+                android:textColor="@color/green" />
+            <TextView
+                android:id="@+id/positionAdresse"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="  Adresse  "
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:singleLine="false"
+                android:textColor="@color/green" />
+
+        </LinearLayout>
+
 
         <TextView
             android:id="@+id/recette"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:background="@color/green"
             android:textColor="@color/white"
-            android:text="Recette de la région/pays : " />
+            android:text="La recette : " />
 
         <TextView
             android:id="@+id/descriptif"
             android:layout_width="match_parent"
             android:layout_height="83dp"
             android:layout_marginTop="10dp"
-            android:textColor="@color/green"
-            android:text="Descriptif :" />
+            android:text="" />
 
-        <Button
-            android:id="@+id/ajouterPoint"
-            android:layout_width="330dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|center_horizontal"
-            android:textColor="@color/white"
-            android:backgroundTint="@color/green"
-            android:text="Ajouter un point" />
 
         <Button
             android:id="@+id/retour"
