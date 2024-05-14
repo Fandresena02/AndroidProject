@@ -2,16 +2,22 @@ package fr.android.devmobproject;
 
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.Manifest;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -24,6 +30,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import android.location.Geocoder;
 import android.location.Address;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.List;
@@ -38,6 +45,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private ActivityMapsBinding binding;
     private LocationManager lm;
     private Marker previousMarker;
+    private final static int PERM_REQUEST = 1;
+    private static final int SETTINGS_RESULT = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,15 +75,82 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
 
     }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == PERM_REQUEST) {
+            // check grantResults
+            if (grantResults.length > 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED &&
+                    grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+                requestLocationUpdates();
+            }else {
+                // Permissions denied, finish the activity
+                Toast.makeText(this, "Permission denied. App cannot function without location permission. Please active it", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == SETTINGS_RESULT) {
+            // check if the GPS has been turned on
+            if (lm.isProviderEnabled(LocationManager.GPS_PROVIDER) == false)
+                //finish();
+                return;
+            else
+                requestLocationUpdates();
+        }
+    }
+    @SuppressLint("MissingPermission") // asking for permissions beforehand
+    private void requestLocationUpdates() {
+        lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 15000, 10, this);
+    }
+
+
+    private void enableGPS() {
+        // run the settings activity
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Your GPS is disabled, please do enable it")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                        startActivityForResult(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS), SETTINGS_RESULT);
+                    }
+                })
+                .setNegativeButton("No - Quit", new DialogInterface.OnClickListener() {
+                    public void onClick(final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                        dialog.cancel();
+                    }
+                });
+        final AlertDialog alert = builder.create();
+        alert.show();
+
+    }
 
     @SuppressLint("MissingPermission")
     @Override
     protected void onResume() {
         super.onResume();
+        if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
+                checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
 
-        // 2 - register to receive the location events before the activity becomes visible
-        lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 15000, 10, this);
+            // check the GPS is on, otherwise enable it
+            if (lm.isProviderEnabled(LocationManager.GPS_PROVIDER) == false)
+                enableGPS(); // starts a new activity to enable the GPS, therefore the following instruction is not executed
+
+            requestLocationUpdates();
+
+        } else {
+            // Permissions were previously denied, request them again
+            String[] perms = new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
+            ActivityCompat.requestPermissions(this, perms, PERM_REQUEST);
+        }
     }
+
 
     @Override
     protected void onPause() {
