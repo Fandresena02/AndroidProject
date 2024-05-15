@@ -68,6 +68,30 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // 1- Request access to the location service
         lm = (LocationManager) getSystemService(LOCATION_SERVICE);
 
+        Button addFavorisButton = findViewById(R.id.ajouterFavoris);
+        addFavorisButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (previousMarker != null) {
+                    LatLng markerPosition = previousMarker.getPosition();
+                    Geocoder geocoder = new Geocoder(MapsActivity.this, Locale.getDefault());
+                    try {
+                        List<Address> addresses = geocoder.getFromLocation(markerPosition.latitude, markerPosition.longitude, 1);
+                        if (!addresses.isEmpty()) {
+                            String ville = addresses.get(0).getLocality();
+                            String adresse = addresses.get(0).getAddressLine(0);
+                            // On ajoute la ville à la base de données
+                            BddSQLite bddSQLite = new BddSQLite(MapsActivity.this);
+                            bddSQLite.ajouterFavori(ville, adresse);
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+
+
 
         // On définit le bouton de déconnexion
         Button logoutButton = findViewById(R.id.retour);
@@ -76,6 +100,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onClick(View v) {
                 // On appelle LoginActivity, pour retourner sur la page de connexion
                 Intent intent = new Intent(MapsActivity.this, UserActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // On définit le bouton de favoris pour voir la liste
+        Button favorisButton = findViewById(R.id.favoris);
+        favorisButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MapsActivity.this, FavoriteActivity.class);
                 startActivity(intent);
             }
         });

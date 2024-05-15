@@ -52,30 +52,36 @@
             android:id="@+id/Favoris"
             android:layout_width="match_parent"
             android:layout_height="357dp"
-            android:text="  Favoris  " />
+            android:text="  Les favoris  " />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="114dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
         <Button
-            android:id="@+id/retourMapButton"
-            android:layout_width="195dp"
+            android:id="@+id/supprimerTout"
+            android:layout_width="131dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|center_horizontal"
-            android:text="Retour Map" />
+            android:text="Supprimer la liste" />
+
+        <Button
+            android:id="@+id/retourMapButton"
+            android:layout_width="131dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:text="Retour à la Map" />
 
         <Button
             android:id="@+id/retourUser"
-            android:layout_width="195dp"
+            android:layout_width="131dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|center_horizontal"
             android:text="Retour User Profile" />
-
     </LinearLayout>
 
 

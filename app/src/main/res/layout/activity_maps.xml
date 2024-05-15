@@ -107,7 +107,7 @@
         <TextView
             android:id="@+id/descriptif"
             android:layout_width="match_parent"
-            android:layout_height="83dp"
+            android:layout_height="60dp"
             android:layout_marginTop="10dp"
             android:text="" />
 
@@ -117,13 +117,19 @@
 
             <Button
                 android:id="@+id/ajouterFavoris"
-                android:layout_width="206dp"
+                android:layout_width="137dp"
                 android:layout_height="wrap_content"
                 android:text="Ajouter aux favoris" />
 
             <Button
+                android:id="@+id/favoris"
+                android:layout_width="137dp"
+                android:layout_height="wrap_content"
+                android:text="Voir liste favoris" />
+
+            <Button
                 android:id="@+id/retour"
-                android:layout_width="206dp"
+                android:layout_width="137dp"
                 android:layout_height="wrap_content"
                 android:text="Retour User Profile" />
 
