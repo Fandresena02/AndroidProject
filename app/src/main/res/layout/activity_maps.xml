@@ -111,13 +111,25 @@
             android:layout_marginTop="10dp"
             android:text="" />
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/retour"
-            android:layout_width="330dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|center_horizontal"
-            android:text="Retour User Profile" />
+            <Button
+                android:id="@+id/ajouterFavoris"
+                android:layout_width="206dp"
+                android:layout_height="wrap_content"
+                android:text="Ajouter aux favoris" />
+
+            <Button
+                android:id="@+id/retour"
+                android:layout_width="206dp"
+                android:layout_height="wrap_content"
+                android:text="Retour User Profile" />
+
+        </LinearLayout>
+
+
 
     </LinearLayout>
 

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".UserActivity">
+    tools:context=".FavoriteActivity">
 
     <LinearLayout
         android:layout_width="412dp"
@@ -26,56 +26,57 @@
             android:layout_weight="1"
             android:textSize="35dp"
             android:gravity="center"
-            android:text="User profile" />
+            android:text="Favoris" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="411dp"
+        android:layout_marginTop="92dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/ListeTitre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/green"
+            android:text="  Liste des favoris :  " />
+
+        <TextView
+            android:id="@+id/Favoris"
+            android:layout_width="match_parent"
+            android:layout_height="357dp"
+            android:text="  Favoris  " />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="519dp"
-        android:layout_marginTop="92dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints">
+        android:layout_height="114dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
         <Button
-            android:id="@+id/mapsbutton"
-            android:layout_width="330dp"
+            android:id="@+id/retourMapButton"
+            android:layout_width="195dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|center_horizontal"
-            android:text="Maps"
-            android:backgroundTint="@color/green"
-            tools:ignore="MissingConstraints" />
+            android:text="Retour Map" />
 
         <Button
-            android:id="@+id/camerabutton"
-            android:layout_width="330dp"
+            android:id="@+id/retourUser"
+            android:layout_width="195dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|center_horizontal"
-            android:text="Camera"
-            android:backgroundTint="@color/green"
-            tools:ignore="MissingConstraints" />
+            android:text="Retour User Profile" />
 
-        <Button
-            android:id="@+id/favorisbutton"
-            android:layout_width="330dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|center_horizontal"
-            android:text="Mes favoris"
-            android:backgroundTint="@color/green"
-            tools:ignore="MissingConstraints" />
-
-        <Button
-            android:id="@+id/logoutbutton"
-            android:layout_width="330dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|center_horizontal"
-            android:text="Déconnexion"
-            android:backgroundTint="@color/indigo"
-            tools:ignore="MissingConstraints" />
     </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

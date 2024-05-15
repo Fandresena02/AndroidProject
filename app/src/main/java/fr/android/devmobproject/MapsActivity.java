@@ -102,7 +102,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
 
-
     @SuppressLint("MissingPermission")
     @Override
     protected void onResume() {
@@ -134,21 +133,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
     }
 
-    /*
-    private void updateLocation(LatLng latLng) {
-        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
-        try {
-            List<Address> addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1);
-            if (!addresses.isEmpty()) {
-                String addressString = addresses.get(0).getAddressLine(0);
-                TextView recetteTextView = findViewById(R.id.location);
-                recetteTextView.setText(addressString);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    */
 
     private void updateLocation(LatLng latLng) {
         Geocoder geocoder = new Geocoder(this, Locale.getDefault());
@@ -161,12 +145,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 TextView recetteTextView = findViewById(R.id.descriptif);
                 TextView locationTextView = findViewById(R.id.localisationAdresse);
                 locationTextView.setText(latLngText + " | " + addressString);
-
-                // la recette en fonction de la ville
-                String cityName = addresses.get(0).getLocality();
-                MySQLDatabase mySQLDatabase = new MySQLDatabase();
-                String recette = mySQLDatabase.getRecette(cityName);
-                recetteTextView.setText(recette);
             }
         } catch (IOException e) {
             e.printStackTrace();
