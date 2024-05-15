@@ -10,4 +10,5 @@
     <string name="camera">CAMERA</string>
     <string name="disconnect">Log Out</string>
     <string name="login_error_message">Incorrect username or password</string>
+    <string name="favorite">My favorite</string>
 </resources>
