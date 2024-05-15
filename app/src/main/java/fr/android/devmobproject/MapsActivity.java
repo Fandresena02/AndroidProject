@@ -35,6 +35,7 @@ import android.location.Address;
 import android.widget.TextView;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Locale;
 
@@ -145,9 +146,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 TextView recetteTextView = findViewById(R.id.descriptif);
                 TextView locationTextView = findViewById(R.id.localisationAdresse);
                 locationTextView.setText(latLngText + " | " + addressString);
+
+                // la recette en fonction de la ville
+                String cityName = addresses.get(0).getLocality();
+                RecetteDAO uneRecette = new RecetteDAO();
+                String [] recette = uneRecette.getRecette(cityName);
+                recetteTextView.setText(recette[1]);
             }
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
