@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DevMobProject</string>
+    <string name="app_title">APPLICATION DE RECETTE</string>
+    <string name="identifiant">Identifiant</string>
+    <string name="mdp">Mot de passe</string>
+    <string name="connect">S\'identifier</string>
+    <string name="user_profile">Profil utilisateur</string>
+    <string name="maps">Maps</string>
+    <string name="camera">Appareil photo</string>
+    <string name="disconnect">Déconnexion</string>
+    <string name="login_error_message">Identifiant ou mot de passe incorrect</string>
+</resources>
